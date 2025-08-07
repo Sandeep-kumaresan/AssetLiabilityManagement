@@ -1,5 +1,4 @@
 package com.oracle.entities;
-
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -59,8 +58,7 @@ public class Liability {
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
-    // Getters and Setters
-
+ 
 	public UUID getLiabilityId() {
 		return liabilityId;
 	}

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class InterestRate {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Optional, if you want auto-generated IDs
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
     @Column(name = "rate_date", nullable = false)
@@ -20,8 +20,7 @@ public class InterestRate {
     @Column(name = "currency", length = 3, nullable = false)
     private String currency;
 
-    // Getters and setters
-    
+
     public Long getId() {
         return id;
     }

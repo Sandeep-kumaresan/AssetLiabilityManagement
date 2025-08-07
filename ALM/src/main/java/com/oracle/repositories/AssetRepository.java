@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.oracle.entities.Asset;
 @Repository
 public interface AssetRepository extends JpaRepository<Asset, Long> {
-    // Optional: Query by asset type or interest rate
     // @Query("SELECT a FROM Asset a WHERE a.DTYPE = 'Investment' AND a.interestRate.effectiveRate > :rate")
     // List<Asset> findInvestmentsByInterestRateGreaterThan(double rate);
  @Modifying

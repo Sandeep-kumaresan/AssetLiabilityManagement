@@ -13,7 +13,6 @@ public interface ALMReportRepository extends JpaRepository<ALMReport, Long> {
     @Modifying
     @Query("UPDATE ALMReport ar SET ar.gapValue = :gapValue WHERE ar.id = :id")
     int updateGapValue(@Param("id") Long id, @Param("gapValue") double gapValue);
-    // Scenario-specific queries:
     @Query("SELECT COALESCE(SUM(r.rateSensitiveAssets), 0.0) FROM ALMReport r WHERE r.scenario.scenarioId = :scenarioId")
     double findRateSensitiveAssetsByScenario(@Param("scenarioId") String scenarioId);
     @Query("SELECT COALESCE(SUM(r.rateSensitiveLiabilities), 0.0) FROM ALMReport r WHERE r.scenario.scenarioId = :scenarioId")
@@ -21,7 +20,6 @@ public interface ALMReportRepository extends JpaRepository<ALMReport, Long> {
 scenarioId);
     @Query("SELECT COALESCE(AVG(r.durationGap), 0.0) FROM ALMReport r WHERE r.scenario.scenarioId = :scenarioId")
     double findDurationAssetsByScenario(@Param("scenarioId") String scenarioId);
- // You may want to separate asset duration from durationGap, so consider your model
     @Query("SELECT COALESCE(AVG(r.durationGap), 0.0) FROM ALMReport r WHERE r.scenario.scenarioId = :scenarioId")
     double findDurationLiabilitiesByScenario(@Param("scenarioId") String scenarioId);
 

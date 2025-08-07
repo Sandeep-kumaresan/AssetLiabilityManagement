@@ -1,54 +1,38 @@
 package com.oracle.entities;
-
 import jakarta.persistence.*;
+import lombok.Data;
 import java.time.LocalDate;
-
+@Data
 @Entity
-@Table(name = "assets") // use lowercase table name, standard practice
-//@Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name = "asset_type", discriminatorType = DiscriminatorType.STRING)
-
-//DEPOSIT,CURRENCYEXCHANGE RATE, -CHANGES
+@Table(name = "assets") 
 public class Asset {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "investment_amount")
-    private Double investmentAmount;  // use wrapper to allow null
-
+    private Double investmentAmount; 
     @Column(name = "currency", length = 3)
     private String currency;
-
     @Column(name = "risk_rating", length = 255)
     private String riskRating;
-
     @Column(name = "maturity_date")
     private LocalDate maturityDate;
-
     @Column(name = "duration")
-    private Double duration;  // use wrapper
-
+    private Double duration;  
     @Column(name = "liquidity_score")
-    private Integer liquidityScore;  // use wrapper
-
+    private Integer liquidityScore;
     @Column(name = "asset_category", length = 255)
     private String assetCategory;
-
     @Column(name = "creation_date")
     private LocalDate creationDate;
-
     @Column(name = "last_updated_date")
     private LocalDate lastUpdatedDate;
-
     @ManyToOne
     @JoinColumn(name = "interest_rate_id", referencedColumnName = "id", 
                 foreignKey = @ForeignKey(name = "FK_Assets_interest_rate_id"))
     private InterestRate interestRate;
 
-    // Getters and Setters
-    
+
     public Long getId() {
         return id;
     }

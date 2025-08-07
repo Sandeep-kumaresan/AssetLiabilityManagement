@@ -1,5 +1,4 @@
 package com.oracle.service;
-
 import com.oracle.entities.CurrencyConverter;
 import com.oracle.configuration.ModelMapperConfiguration;
 import com.oracle.dto.ScenarioResultDTO;
@@ -14,36 +13,26 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class ScenariosServiceImpl implements ScenariosService {
-
     private final ModelMapperConfiguration modelMapperConfiguration;
-
     @Autowired
     private ScenariosRepository scenariosRepository;
-
     @Autowired
     private InvestmentsRepository investmentsRepository;
-
     @Autowired
     private ScenarioResultsRepository scenarioResultsRepository;
-
     @Autowired
     private ModelMapper modelMapper;
-
     @Autowired
     private CurrencyConverter currencyConverter;
-    
     ScenariosServiceImpl(ModelMapperConfiguration modelMapperConfiguration) {
         this.modelMapperConfiguration = modelMapperConfiguration;
     }
-
     @Override
     public List<ScenariosDTO> retrieveScenarios() {
         Iterable<Scenarios> iterable = scenariosRepository.findAll();
@@ -54,7 +43,6 @@ public class ScenariosServiceImpl implements ScenariosService {
         });
         return scenarioDTOList;
     }
-
     @Override
     public ScenariosDTO retrieveScenario(String scenarioId) {
         Optional<Scenarios> optionalScenario = scenariosRepository.findById(scenarioId);
@@ -63,7 +51,6 @@ public class ScenariosServiceImpl implements ScenariosService {
         }
         return null;
     }
-
     @Override
     public String saveScenario(ScenariosDTO scenarioDTO) {
         if (!List.of("Stress", "Baseline", "Adverse").contains(scenarioDTO.getScenarioType())) {
@@ -78,7 +65,6 @@ public class ScenariosServiceImpl implements ScenariosService {
         }
         return "Failed";
     }
-
     @Transactional
     @Override
     public String updateScenarioImpactFactor(String scenarioId, double newImpactFactor) {
@@ -91,7 +77,6 @@ public class ScenariosServiceImpl implements ScenariosService {
         }
         return "Failed";
     }
-
     @Override
     public String deleteScenario(String scenarioId) {
         Optional<Scenarios> optionalScenario = scenariosRepository.findById(scenarioId);
@@ -101,8 +86,8 @@ public class ScenariosServiceImpl implements ScenariosService {
         }
         return "Failed";
     }
-
-    @Transactional
+    @SuppressWarnings("unchecked")
+	@Transactional
     @Override
     public ScenarioResultDTO computeAndSavePortfolioValue(String scenarioId) {
         Optional<Scenarios> optionalScenario = scenariosRepository.findById(scenarioId);

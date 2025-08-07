@@ -1,18 +1,13 @@
 package com.oracle.entities;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
-
 import org.hibernate.annotations.GenericGenerator;
-
 import com.oracle.enums.FlowStatus;
 import com.oracle.enums.FlowType;
 import com.oracle.enums.SourceType;
-
 import jakarta.persistence.*;
-
 import lombok.*;
 
 @Entity

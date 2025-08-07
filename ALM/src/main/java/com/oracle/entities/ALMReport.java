@@ -4,11 +4,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
 import java.time.LocalDate;
 import jakarta.persistence.ForeignKey;
+@Data
 @Entity
 @Table(name = "ALM_Reports")
 public class ALMReport {
@@ -18,11 +20,8 @@ public class ALMReport {
     @Column(name = "report_date")
     private LocalDate reportDate;
     @ManyToOne
-    @JoinColumn(
-        name = "scenario_id", 
-        referencedColumnName = "scenario_id", 
-        foreignKey = @ForeignKey(name = "FK_ALM_Reports_scenario_id")
-    )
+    @JoinColumn(name = "scenario_id", referencedColumnName = "scenario_id", 
+        foreignKey = @ForeignKey(name = "FK_ALM_Reports_scenario_id"))
     private Scenarios scenario;
     @Column(name = "gap_value")
     private double gapValue;

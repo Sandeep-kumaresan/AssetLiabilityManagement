@@ -11,10 +11,10 @@ public class Deposit {
 
     @Id
     @Column(name = "liability_id", columnDefinition = "UUID")
-    private UUID id; // Primary key
+    private UUID id; 
 
     @OneToOne
-    @MapsId // This tells JPA that the PK is shared with the foreign key
+    @MapsId 
     @JoinColumn(
             name = "liability_id",
             referencedColumnName = "liability_id",
@@ -25,6 +25,6 @@ public class Deposit {
     @Column(name = "deposit_term")
     private Integer depositTerm;
 
-    @Column(name = "auto_renew", length = 10) // specify length if possible
+    @Column(name = "auto_renew", length = 10)
     private String autoRenew;
 }

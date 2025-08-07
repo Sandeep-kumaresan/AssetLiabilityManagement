@@ -11,10 +11,8 @@ public class CurrencyConverter {
     private final Map<String, Double> exchangeRatesToUSD = new HashMap<>();
 
     public CurrencyConverter() {
-        // Fixed exchange rates to USD (as of hypothetical date, e.g., August 2025)
         exchangeRatesToUSD.put("USD", 1.0);
-        exchangeRatesToUSD.put("EUR", 1.1); // 1 EUR = 1.1 USD
-        // Add more currencies as needed
+        exchangeRatesToUSD.put("EUR", 1.1); 
     }
 
     public double convertToUSD(double amount, String currencyCode) {
